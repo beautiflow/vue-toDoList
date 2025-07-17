@@ -1,11 +1,11 @@
 <template>
-  <div :class="nameClass">
-    {{ name }}
-  </div>
-  <input :type="type" :value="name">
+  <input 
+    type="text" 
+    v-model="name"
+    >
   <button 
-  class="btn btn-primary"
-  @click="updateName"
+    class="btn btn-primary"
+    @click="onSubmit"
   >
   Click
   </button>
@@ -18,26 +18,14 @@ export default ({
   setup(){
     // const name = ref('Kossie Coder1');
     const name = ref('Kossie');
-    const type = ref('number');
-    const nameClass = ref('');
 
-    // const greeting = (name) => {
-    //   return 'Hello, ' + name;
-    // }
-
-    // const greet = greeting(name);
-
-    const updateName = () => {
-      name.value = 'Coder';
-      type.value = 'text';
-      nameClass.value = 'name';
+    const onSubmit = () => {
+      console.log(name.value);
     }
 
     return {
       name,
-      updateName,
-      type,
-      nameClass
+      onSubmit,
     };
   }
 })
