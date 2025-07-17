@@ -7,7 +7,7 @@
       추가된 Todo가 없습니다.
     </div>
 
-  <TodoList :todos="todos"/>
+  <TodoList :todos="todos" @toggle-todo="toggleTodo"/>
     
 </div>
   
@@ -41,11 +41,18 @@ export default ({
         todos.value.splice(index, 1);
     }
 
+    const toggleTodo = (index) => {
+      console.log(todos.value[index]);
+      todos.value[index].completed = !todos.value[index].completed;
+      console.log(todos.value[index]);
+    }
+
     return {
       todos,
       addTodo,
       todoStyle,
-      deleteTodo
+      deleteTodo,
+      toggleTodo
     };
   }
 })
