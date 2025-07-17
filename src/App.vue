@@ -2,8 +2,8 @@
 <div class="container">
   <h2>To-Do List</h2>
     <form 
-    @submit.prevent="onSubmit"
-    class="d-flex">
+    @submit.prevent="onSubmit">
+    <div class="d-flex">
       <div class="flex-grow-1 mr-2">
         <input 
           class="form-control "
@@ -19,6 +19,10 @@
         >
         Add
         </button>
+      </div>
+    </div>
+      <div v-show="hasError" style="color: red">
+        This field cannot be empty
       </div>
     </form>
     <div 
@@ -40,7 +44,7 @@ import { ref } from 'vue';
 
 export default ({
   setup(){
-    // const name = ref('Kossie Coder1');
+    const toggle = ref(false);
     const todo = ref('');
     const todos = ref([
       {id: 1, subject: '휴대폰 사기'},
@@ -48,18 +52,33 @@ export default ({
 
     ]);
 
+    const hasError = ref(false);
+
     const onSubmit = () => {
-      todos.value.push({
+      if(todo.value === ''){
+        hasError.value = true;
+      }else{
+        todos.value.push({
         id: Date.now(),
         subject: todo.value
       });
+      hasError.value = false;
+
+      }
+   
+    }
+
+    const onToggle = () => {
+      toggle.value = !toggle.value;
     }
 
     return {
       todo,
       todos,
       onSubmit,
-     
+      toggle,
+      onToggle,
+      hasError
     };
   }
 })
