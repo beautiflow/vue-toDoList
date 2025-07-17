@@ -38,7 +38,10 @@
             v-model="todo.completed"
             >
           <label
-            class="form-check-label">{{ todo.subject }}</label>
+            class="form-check-label"
+            :class="{todo: todo.completed}"
+            >
+            {{ todo.subject }}</label>
         </div>
       </div>
     </div>
@@ -55,6 +58,10 @@ export default ({
     const todo = ref('');
     const todos = ref([]);
     const hasError = ref(false);
+    const todoStyle = {
+      textDecoration: 'line-through',
+      color: 'gray'
+    }
 
     const onSubmit = () => {
       if(todo.value === ''){
@@ -63,7 +70,7 @@ export default ({
         todos.value.push({
         id: Date.now(),
         subject: todo.value,
-        completed: true,
+        completed: false,
       });
       hasError.value = false;
       todo.value = '';
@@ -74,7 +81,8 @@ export default ({
       todo,
       todos,
       onSubmit,
-      hasError
+      hasError,
+      todoStyle,
     };
   }
 })
@@ -82,8 +90,9 @@ export default ({
 
 <style>
 
-.name{
-  color: rgb(27, 72, 233);
+.todo{
+  color: gray;
+  text-decoration: line-through;
 }
 
 </style>
