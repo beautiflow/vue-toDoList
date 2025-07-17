@@ -11,9 +11,13 @@
 </template>
 
 <script>
+// import { ref } from 'vue';
+import { reactive } from 'vue';
+
 export default ({
   setup(){
-    let name = 'Kossie Coder1';
+    // const name = ref('Kossie Coder1');
+    const name = reactive({id: 1});
 
     // const greeting = (name) => {
     //   return 'Hello, ' + name;
@@ -22,7 +26,8 @@ export default ({
     // const greet = greeting(name);
 
     const updateName = () => {
-      name = 'Kossie Coder';
+      // name.value = 'Kossie Coder'; // ref
+      name.id = 2; // reactive
       console.log(name);
     }
 
