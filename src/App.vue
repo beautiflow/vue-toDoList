@@ -26,8 +26,8 @@ export default ({
     // const greet = greeting(name);
 
     const updateName = () => {
-      // name.value = 'Kossie Coder'; // ref
-      name.id = 2; // reactive
+      // name.value = 'Kossie Coder'; // ref를 사용할 때는 value 를 적어야 한다. 그리고 기본 자료형과 object, array 까지 사용이 가능하지만 
+      name.id = 2; // reactive // reactive 를 사용하면 value 를 적지 않아도 된다. 기본자료형 x, object, array만 사용가능하다.
       console.log(name);
     }
 
