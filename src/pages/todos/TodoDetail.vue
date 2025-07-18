@@ -49,6 +49,11 @@
     </nav>
     
 </div>
+<Toast 
+    v-if="showToast"
+    :message="toastMessage"
+    :type="toastAlertType"
+/>
   
   
 </template>
@@ -58,8 +63,8 @@ import { ref, computed, watch } from 'vue';
 import TodoList from '@/components/TodoList.vue';
 import TodoSimpleForm from '@/components/TodoSimpleForm.vue';
 import axios from 'axios';
-
-
+import Toast from '@/components/Toast.vue';
+import { useToast } from '@/hooks/toast';
 
     const todos = ref([]);
     const error = ref('');
@@ -72,6 +77,12 @@ import axios from 'axios';
       return Math.ceil(numberOfTodos.value/limit);
     });
 
+    const {
+      toastMessage,
+      toastAlertType,
+      showToast,
+      triggerToast
+    } = useToast();
 
     const getTodos = async(page = currentPage.value) => {
       currentPage.value = page;
@@ -82,8 +93,8 @@ import axios from 'axios';
       }catch(err){
         console.log(err);
         error.value = 'Something went wrong.';
+        triggerToast('Something went wrong', 'danger');
       }
-
     }
     getTodos();
 
@@ -99,16 +110,10 @@ import axios from 'axios';
           await getTodos(1);
       }catch(err){
           error.value = 'Something went wrong.';
+          triggerToast('Something went wrong', 'danger');
       }
       console.log("hello")
     };
-
-
-    // const todoStyle = {
-    //   textDecoration: 'line-through',
-    //   color: 'gray'
-    // }
-
    
     const deleteTodo = async (index) => {
       error.value = '';
@@ -119,6 +124,7 @@ import axios from 'axios';
       }catch(err){
         console.log(err);
         error.value = 'Something went wrong.';
+        triggerToast('Something went wrong', 'danger');
       }
     };
 
@@ -135,6 +141,7 @@ import axios from 'axios';
       }catch(err){
         console.log(err);
         error.value = 'Something went wrong.';
+        triggerToast('Something went wrong', 'danger');
       }
     };
 

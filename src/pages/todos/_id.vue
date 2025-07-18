@@ -59,31 +59,25 @@
 <script setup>
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
-import { computed, ref, onMounted } from 'vue';
+import { computed, ref } from 'vue';
 import _ from 'lodash';
 import Toast from '@/components/Toast.vue';
-
- 
- 
+import { useToast } from '@/hooks/toast';
 
     const route = useRoute();
     const router = useRouter();
     const todo = ref(null);
     const originalTodo = ref(null);
     const loading = ref(true);
-    const showToast = ref(false);
-    const toastMessage = ref('');
-    const toastAlertType = ref('');
-    const timeout = ref(null);
+
+    const {
+      toastMessage,
+      toastAlertType,
+      showToast,
+      triggerToast
+    } = useToast();
+
     const todoId = route.params.id;
-    
-
-    onMounted(() => {
-     console.log('unmounted');
-     clearTimeout(timeout.value);
-    });
-   
-
 
     const getTodo = async() => {
         try{
@@ -119,18 +113,6 @@ import Toast from '@/components/Toast.vue';
 
     getTodo();
 
-    const triggerToast = (message, type = 'success') => {
-        toastMessage.value = message;
-        toastAlertType.value = type;
-        showToast.value = true;
-        timeout.value = setTimeout(() => {
-            console.log('hello');
-            toastMessage.value = '';
-            toastAlertType.value = '';
-            showToast.value = false;
-        }, 5000);
-    }
-
     const onSave = async() => {
         try{
             const res = await axios.put(`http://localhost:3000/todos/${todoId}`, {
@@ -143,8 +125,7 @@ import Toast from '@/components/Toast.vue';
         }catch(error){
             console.log(error);
             triggerToast('Something went wrong', 'danger');
-        }
-       
+        }    
     }
 
 </script>
