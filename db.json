@@ -22,7 +22,7 @@
     },
     {
       "subject": "12345",
-      "completed": false,
+      "completed": true,
       "id": 15
     },
     {
@@ -52,23 +52,8 @@
     },
     {
       "subject": "151543",
-      "completed": false,
+      "completed": true,
       "id": 25
-    },
-    {
-      "subject": "123412",
-      "completed": false,
-      "id": 26
-    },
-    {
-      "subject": "234",
-      "completed": false,
-      "id": 27
-    },
-    {
-      "subject": "new",
-      "completed": false,
-      "id": 28
     }
   ]
 }
