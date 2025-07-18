@@ -54,21 +54,14 @@
   
 </template>
 
-<script>
+<script setup>
 import { ref, computed, watch } from 'vue';
 import TodoList from '@/components/TodoList.vue';
 import TodoSimpleForm from '@/components/TodoSimpleForm.vue';
 import axios from 'axios';
 
 
-export default ({
-  name: 'TodosPage',
 
-  components: {
-    TodoSimpleForm,
-    TodoList
-  },
-  setup(){
     const todos = ref([]);
     const error = ref('');
     const numberOfTodos = ref(0);
@@ -104,7 +97,7 @@ export default ({
             completed: todo.completed,
           });
 
-          getTodos(1);
+          await getTodos(1);
       }catch(err){
           error.value = 'Something went wrong.';
       }
@@ -123,7 +116,7 @@ export default ({
       const id = todos.value[index].id;
       try{
         await axios.delete('http://localhost:3000/todos/'+ id);
-        getTodos(1);
+         getTodos(1);
       }catch(err){
         console.log(err);
         error.value = 'Something went wrong.';
@@ -146,48 +139,20 @@ export default ({
     };
 
     let timeout = null;
-    const searchTodo = () => {
+    const searchTodo = async() => {
       clearTimeout(timeout);
-      getTodos(1);
+      await getTodos(1);
     }
     
     watch(searchText, () => {  
       clearTimeout(timeout);
-      timeout = setTimeout(() => {
-        getTodos(1);
+      timeout = setTimeout(async() => {
+        await getTodos(1);
       }, 2000);
     });
 
 
 
-    // const filteredTodos = computed(() => {
-    //   if(searchText.value){
-    //       return todos.value.filter(todo => {
-    //         return todo.subject.includes(searchText.value);
-    //       });
-    //   }
-
-    //   return todos.value;
-    // });
-
-
-
-    return {
-      todos,
-      addTodo,
-      todoStyle,
-      deleteTodo,
-      toggleTodo,
-      searchText,
-      // filteredTodos,
-      error,
-      numberOfPages,
-      currentPage,
-      getTodos,
-      searchTodo
-    };
-  }
-})
 </script>
 
 <style>
