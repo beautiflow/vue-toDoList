@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { ref, computed, watchEffect } from 'vue';
+import { ref, computed, watch } from 'vue';
 import TodoList from './components/TodoList.vue';
 import TodoSimpleForm from './components/TodoSimpleForm.vue';
 import axios from 'axios';
@@ -70,14 +70,29 @@ export default ({
     const numberOfTodos = ref(0);
     let limit = 5;
     const currentPage = ref(1);
+    // const a = reactive({
+    //   b: 1,
+    //   c: 3
+    // });
+    // watch(() => [a.b, a.c], (current, prev) => {
+    //   console.log(current, prev);
+    // });
+    // a.b = 2;
 
-    watchEffect(() => { // reactive 한 state 여야 값이 변경
-      // console.log(currentPage.value);
-      // console.log(numberOfTodos.value);
-      console.log(limit);
+    watch([currentPage, numberOfTodos], (current, prev) => {
+      console.log(current, prev);
     });
 
-    limit = 3;
+    watch(currentPage, (currentPage, prev) => {
+      console.log(currentPage, prev);
+    });
+
+    // watchEffect(() => { // reactive 한 state 여야 값이 변경
+    //   // console.log(currentPage.value);
+    //   // console.log(numberOfTodos.value);
+    //   console.log(limit);
+    // });
+
 
     const numberOfPages = computed(() => {
       return Math.ceil(numberOfTodos.value/limit);
