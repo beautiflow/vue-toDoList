@@ -105,10 +105,10 @@ import axios from 'axios';
     };
 
 
-    const todoStyle = {
-      textDecoration: 'line-through',
-      color: 'gray'
-    }
+    // const todoStyle = {
+    //   textDecoration: 'line-through',
+    //   color: 'gray'
+    // }
 
    
     const deleteTodo = async (index) => {

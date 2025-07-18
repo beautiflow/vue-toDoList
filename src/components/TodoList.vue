@@ -4,7 +4,10 @@
       :key="todo.id"
       class="card mt-2"
     >
-      <div class="card-body p-2 d-flex align-items-centera">
+      <div 
+        class="card-body p-2 d-flex align-items-centera"
+        @click="moveToPage(todo.id)"
+        >
         <div class="form-check flex-grow-1">
           <input 
             class="form-check-input"
@@ -31,12 +34,13 @@
 </template>
 
 <script setup>
-import { watchEffect } from 'vue';
-    const props = defineProps({
-        todos: {
-            type: Array,
-            required: true
-        }
+import { useRouter } from 'vue-router';
+
+    const { todos } = defineProps({
+      todos: {
+        type: Array,
+        required: true
+      }
     });
 
     const emit = defineEmits(
@@ -46,9 +50,7 @@ import { watchEffect } from 'vue';
         ]
     );
 
-    watchEffect(() => {
-      // console.log(props.todos.length);
-    })
+    const router = useRouter();
 
     const toggleTodo = (index) => {
         emit('toggle-todo', index);
@@ -56,7 +58,17 @@ import { watchEffect } from 'vue';
 
     const deleteTodo = (index) => {
         emit('delete-todo', index);
+    };
 
+    const moveToPage = (todoId) => {
+      console.log(todoId);
+      // router.push('/todos/'+ todoId);
+      router.push({
+        name: 'Todo',
+        params: {
+          id: todoId
+        }
+      });
     };
 
 
