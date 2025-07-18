@@ -1,4 +1,5 @@
 <template>
+<router-view/>
 <div class="container">
   <h2>To-Do List</h2>
 
@@ -7,6 +8,7 @@
     type="text" 
     v-model="searchText"
     placeholder="Search"
+    @keyup.enter="searchTodo"
     >
     <hr />
     <TodoSimpleForm @add-todo="addTodo"/>
@@ -141,9 +143,17 @@ export default ({
       }
     };
 
-
-    watch(searchText, () => {
+    let timeout = null;
+    const searchTodo = () => {
+      clearTimeout(timeout);
       getTodos(1);
+    }
+    
+    watch(searchText, () => {  
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        getTodos(1);
+      }, 2000);
     });
 
 
@@ -171,7 +181,8 @@ export default ({
       error,
       numberOfPages,
       currentPage,
-      getTodos
+      getTodos,
+      searchTodo
     };
   }
 })
