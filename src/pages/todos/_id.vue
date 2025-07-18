@@ -4,22 +4,53 @@
     Loading...
   </div>
   <form v-else>
-    <div class="form-group">
-        <label>Todo Subject</label>
-        <input v-model="todo.subject" type="text" class="form-control">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Subject</label>
+                <input 
+                    v-model="todo.subject" 
+                    type="text" 
+                    class="form-control">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label>Status</label>
+                <div>
+                    <button 
+                        class="btn"
+                        type="button"
+                        :class="todo.completed ? 'btn-success' : 'btn-danger'"
+                        @click="toggleTodoStatus"
+                    >
+                        {{ todo.completed ? 'Completed' : 'Incomplete'}}
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
-    <button class="btn btn-primary">
+   
+    <button type="submit" class="btn btn-primary">
         Save
+    </button>
+    <button 
+        class="btn btn-outline-dark ml-2"
+        @click="moveToTodoListPage"
+        >
+        Cancel
     </button>
   </form>
 </template>
 
 <script setup>
 import axios from 'axios';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ref } from 'vue';
 
     const route = useRoute();
+        const router = useRouter();
+
     const todo = ref(null);
     const loading = ref(true);
 
@@ -28,6 +59,16 @@ import { ref } from 'vue';
         const res = await axios.get('http://localhost:3000/todos/' + route.params.id);
         todo.value = res.data;
         loading.value = false;
+    };
+
+    const toggleTodoStatus = () => {
+        todo.value.completed = !todo.value.completed;
+    };
+
+    const moveToTodoListPage = () => {
+        router.push({
+            name: 'Todos'
+        })
     };
 
     getTodo();
