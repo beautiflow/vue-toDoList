@@ -56,8 +56,8 @@
       "id": 25
     },
     {
-      "subject": "new todo2",
-      "completed": false,
+      "subject": "new todo222",
+      "completed": true,
       "id": 26
     }
   ]
