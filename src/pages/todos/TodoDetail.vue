@@ -1,6 +1,14 @@
 <template>
 <div>
-  <h2>To-Do List</h2>
+    <div class="d-flex justify-content-between mb-3">
+      <h2>To-Do List</h2>
+      <button 
+        class="btn btn-primary"
+        @click="moveToCreatePage"
+        >
+        Create Todo
+      </button>
+    </div>
 
   <input 
     class="form-control "
@@ -65,7 +73,9 @@ import TodoSimpleForm from '@/components/TodoSimpleForm.vue';
 import axios from 'axios';
 import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
+import { useRouter } from 'vue-router';
 
+    const router = useRouter();
     const todos = ref([]);
     const error = ref('');
     const numberOfTodos = ref(0);
@@ -143,6 +153,12 @@ import { useToast } from '@/hooks/toast';
         error.value = 'Something went wrong.';
         triggerToast('Something went wrong', 'danger');
       }
+    };
+
+    const moveToCreatePage = () => {
+      router.push({
+        name: 'TodoCreate',
+    })
     };
 
     let timeout = null;
