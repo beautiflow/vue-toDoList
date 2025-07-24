@@ -1,6 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router';
-
+import Modal from '@/components/Modal.vue';
+import { ref } from 'vue';
+ 
     const { todos } = defineProps({
       todos: {
         type: Array,
@@ -16,14 +18,27 @@ import { useRouter } from 'vue-router';
     );
 
     const router = useRouter();
+    const showModal = ref(false);
+    const todoDeleteId = ref(null);
 
     const toggleTodo = (index, event) => {
         emit('toggle-todo', index, event.target.checked);
     };
 
-    const deleteTodo = (index) => {
-        emit('delete-todo', index);
-    };
+    const openModal = (id) => {
+      todoDeleteId.value = id;
+      showModal.value = true;
+    }
+
+    
+    const closeModal = () => {
+      todoDeleteId.value = null;
+      showModal.value = false;
+    }
+
+    // const deleteTodo = (index) => {
+    //     emit('delete-todo', index);
+    // };
 
     const moveToPage = (todoId) => {
       console.log(todoId);
@@ -66,13 +81,17 @@ import { useRouter } from 'vue-router';
         <div>
           <button 
             class="btn btn-danger btn-sm"
-            @click.stop="deleteTodo(index)"
+            @click.stop="openModal(todo.id)"
             >
             Delete
           </button>
         </div>
       </div>
     </div>
+    <Modal 
+      v-if="showModal"
+      @close="closeModal"
+      />
 </template>
 
 <style>
