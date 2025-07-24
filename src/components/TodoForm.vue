@@ -1,10 +1,11 @@
 <script setup>
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
-import { computed, ref } from 'vue';
+import { computed, ref, onUpdated } from 'vue';
 import _ from 'lodash';
 import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
+import  Input  from '@/components/Input.vue';
 
     const route = useRoute();
     const router = useRouter();
@@ -13,6 +14,9 @@ import { useToast } from '@/hooks/toast';
         completed: false,
         body: ''
     });
+    onUpdated(() => {
+        console.log(todo.value.subject)
+    })
     const subjectError = ref('');
     const originalTodo = ref(null);
     const loading = ref(false);
@@ -120,7 +124,7 @@ import { useToast } from '@/hooks/toast';
     >
     <div class="row">
         <div class="col-6">
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <label>Subject</label>
                 <input 
                     v-model="todo.subject" 
@@ -132,7 +136,12 @@ import { useToast } from '@/hooks/toast';
                     >
                     {{subjectError}}
                 </div>
-            </div>
+            </div> -->
+            <Input 
+                label ="Subject"
+                v-model:subject="todo.subject"
+                :error="subjectError"
+                />
         </div>
         <div 
             v-if="editing"
