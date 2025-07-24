@@ -128,7 +128,7 @@ import { useToast } from '@/hooks/toast';
                     class="form-control">
                 <div 
                     v-if="subjectError"
-                    style="color: red"
+                    class="text-red"
                     >
                     {{subjectError}}
                 </div>
@@ -184,6 +184,9 @@ import { useToast } from '@/hooks/toast';
 </template>
 
 
-<style>
+<style scoped>
+    .text-red{
+        color: red;
+    }
 
 </style>
