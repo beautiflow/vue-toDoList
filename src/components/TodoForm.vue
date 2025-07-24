@@ -1,5 +1,5 @@
 <script setup>
-import axios from 'axios';
+import axios from '@/axios';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
 import _ from 'lodash';
@@ -38,9 +38,8 @@ import  Input  from '@/components/Input.vue';
     const getTodo = async() => {
         loading.value = true;
         try{
-            const res = await axios.get(`
-            http://localhost:3000/todos/${todoId}
-            `);
+            const res = await axios.get(`todos/${todoId}`);
+
 
             todo.value = { ...res.data };
             originalTodo.value = { ...res.data };
@@ -91,12 +90,12 @@ import  Input  from '@/components/Input.vue';
                 body: todo.value.body,
             }
             if(props.editing){
-                res = await axios.put(`http://localhost:3000/todos/${todoId}`
+                res = await axios.put(`todos/${todoId}`
                 , data);
                 originalTodo.value = { ...res.data };
 
             }else{
-                res = await axios.post(`http://localhost:3000/todos`
+                res = await axios.post('todos'
                 , data);
                 todo.value.subject = '';
                 todo.value.body = '';
@@ -104,6 +103,13 @@ import  Input  from '@/components/Input.vue';
 
             const message = 'Successfully ' + (props.editing ? 'Updated!' : 'Created!');
             triggerToast(message);
+
+            if(!props.editing){
+                router.push({
+                    name: 'Todos'
+                })
+            }
+
         }catch(error){
             console.log(error);
             triggerToast('Something went wrong', 'danger');

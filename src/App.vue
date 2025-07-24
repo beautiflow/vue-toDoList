@@ -1,6 +1,13 @@
 <script setup>
+import Toast from '@/components/Toast.vue';
+import { useToast } from '@/hooks/toast';
 
-
+   const {
+      toastMessage,
+      toastAlertType,
+      showToast,
+      // triggerToast
+    } = useToast();
 
 
 </script>
@@ -21,6 +28,11 @@
 <div class="container">
   <router-view/>
 </div>
+<Toast 
+    v-if="showToast"
+        :message="toastMessage"
+        :type="toastAlertType"
+  />
 </template>
 
 <style>
