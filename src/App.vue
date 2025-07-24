@@ -1,3 +1,10 @@
+<script setup>
+
+
+
+
+</script>
+
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <router-link class="navbar-brand" :to="{ name: 'Home'}">
@@ -15,13 +22,6 @@
   <router-view/>
 </div>
 </template>
-
-<script setup>
-
-
-
-
-</script>
 
 <style>
 

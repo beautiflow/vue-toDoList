@@ -1,67 +1,3 @@
-<template>
-<div>
-    <div class="d-flex justify-content-between mb-3">
-      <h2>To-Do List</h2>
-      <button 
-        class="btn btn-primary"
-        @click="moveToCreatePage"
-        >
-        Create Todo
-      </button>
-    </div>
-
-  <input 
-    class="form-control "
-    type="text" 
-    v-model="searchText"
-    placeholder="Search"
-    @keyup.enter="searchTodo"
-    >
-    <hr />
-    
-    <div v-if="!todos.length">
-      There is nothing to display.
-    </div>
-
-  <TodoList 
-    :todos="todos" 
-    @toggle-todo="toggleTodo"
-    @delete-todo="deleteTodo"
-    />
-
-    <hr />
-
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li v-if="currentPage !== 1" class="page-item">
-          <a style="cursor:pointer" class="page-link" @click="getTodos(currentPage-1)">
-            Previous
-            </a>
-            </li>
-        <li 
-          v-for="page in numberOfPages"
-          :key="page"
-          class="page-item"
-          :class="currentPage === page ? 'active' : ''"
-          >
-          <a style="cursor:pointer" class="page-link" @click="getTodos(page)">{{ page }}</a>
-        </li>
-        <li v-if="numberOfPages !== currentPage" class="page-item">
-          <a style="cursor:pointer" class="page-link" @click="getTodos(currentPage+1)">Next</a>
-        </li>
-      </ul>
-    </nav>
-    
-</div>
-<Toast 
-    v-if="showToast"
-    :message="toastMessage"
-    :type="toastAlertType"
-/>
-  
-  
-</template>
-
 <script setup>
 import { ref, computed, watch } from 'vue';
 import TodoList from '@/components/TodoList.vue';
@@ -169,9 +105,71 @@ import { useRouter } from 'vue-router';
       }, 2000);
     });
 
-
-
 </script>
+
+<template>
+<div>
+    <div class="d-flex justify-content-between mb-3">
+      <h2>To-Do List</h2>
+      <button 
+        class="btn btn-primary"
+        @click="moveToCreatePage"
+        >
+        Create Todo
+      </button>
+    </div>
+
+  <input 
+    class="form-control "
+    type="text" 
+    v-model="searchText"
+    placeholder="Search"
+    @keyup.enter="searchTodo"
+    >
+    <hr />
+    
+    <div v-if="!todos.length">
+      There is nothing to display.
+    </div>
+
+  <TodoList 
+    :todos="todos" 
+    @toggle-todo="toggleTodo"
+    @delete-todo="deleteTodo"
+    />
+
+    <hr />
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li v-if="currentPage !== 1" class="page-item">
+          <a style="cursor:pointer" class="page-link" @click="getTodos(currentPage-1)">
+            Previous
+            </a>
+            </li>
+        <li 
+          v-for="page in numberOfPages"
+          :key="page"
+          class="page-item"
+          :class="currentPage === page ? 'active' : ''"
+          >
+          <a style="cursor:pointer" class="page-link" @click="getTodos(page)">{{ page }}</a>
+        </li>
+        <li v-if="numberOfPages !== currentPage" class="page-item">
+          <a style="cursor:pointer" class="page-link" @click="getTodos(currentPage+1)">Next</a>
+        </li>
+      </ul>
+    </nav>
+    
+</div>
+<Toast 
+    v-if="showToast"
+    :message="toastMessage"
+    :type="toastAlertType"
+/>
+  
+  
+</template>
 
 <style>
 

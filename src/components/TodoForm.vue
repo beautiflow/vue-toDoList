@@ -1,70 +1,3 @@
-<template>
-  <div v-if="loading">
-    Loading...
-  </div>
-  <form 
-    v-else
-    @submit.prevent="onSave"
-    >
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label>Subject</label>
-                <input 
-                    v-model="todo.subject" 
-                    type="text" 
-                    class="form-control">
-            </div>
-        </div>
-        <div 
-            v-if="editing"
-            class="col-6">
-            <div class="form-group">
-                <label>Status</label>
-                <div>
-                    <button 
-                        class="btn"
-                        type="button"
-                        :class="todo.completed ? 'btn-success' : 'btn-danger'"
-                        @click="toggleTodoStatus"
-                    >
-                        {{ todo.completed ? 'Completed' : 'Incomplete'}}
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div 
-            class="col-12">
-            <div class="form-group">
-                <label>Body</label>
-                <textarea v-model="todo.body" class="form-control" cols="30" rows="10">
-
-                </textarea>
-            </div>
-        </div>
-    </div>
-   
-    <button 
-        type="submit" 
-        class="btn btn-primary"
-        :disabled="!todoUpdated"
-    >
-        Save
-    </button>
-    <button 
-        class="btn btn-outline-dark ml-2"
-        @click="moveToTodoListPage"
-        >
-        Cancel
-    </button>
-  </form>
-  <Toast 
-    v-if="showToast"
-    :message="toastMessage"
-    :type="toastAlertType"
-     />
-</template>
-
 <script setup>
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
@@ -157,6 +90,74 @@ import { useToast } from '@/hooks/toast';
         }    
     }
 </script>
+
+<template>
+  <div v-if="loading">
+    Loading...
+  </div>
+  <form 
+    v-else
+    @submit.prevent="onSave"
+    >
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label>Subject</label>
+                <input 
+                    v-model="todo.subject" 
+                    type="text" 
+                    class="form-control">
+            </div>
+        </div>
+        <div 
+            v-if="editing"
+            class="col-6">
+            <div class="form-group">
+                <label>Status</label>
+                <div>
+                    <button 
+                        class="btn"
+                        type="button"
+                        :class="todo.completed ? 'btn-success' : 'btn-danger'"
+                        @click="toggleTodoStatus"
+                    >
+                        {{ todo.completed ? 'Completed' : 'Incomplete'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div 
+            class="col-12">
+            <div class="form-group">
+                <label>Body</label>
+                <textarea v-model="todo.body" class="form-control" cols="30" rows="10">
+
+                </textarea>
+            </div>
+        </div>
+    </div>
+   
+    <button 
+        type="submit" 
+        class="btn btn-primary"
+        :disabled="!todoUpdated"
+    >
+        Save
+    </button>
+    <button 
+        class="btn btn-outline-dark ml-2"
+        @click="moveToTodoListPage"
+        >
+        Cancel
+    </button>
+  </form>
+  <Toast 
+    v-if="showToast"
+    :message="toastMessage"
+    :type="toastAlertType"
+     />
+</template>
+
 
 <style>
 
