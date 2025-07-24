@@ -130,24 +130,11 @@ import { useStore } from 'vuex';
     >
     <div class="row">
         <div class="col-6">
-            <!-- <div class="form-group">
-                <label>Subject</label>
-                <input 
-                    v-model="todo.subject" 
-                    type="text" 
-                    class="form-control">
-                <div 
-                    v-if="subjectError"
-                    class="text-red"
-                    >
-                    {{subjectError}}
-                </div>
-            </div> -->
-            <Input 
-                label ="Subject"
-                v-model:subject="todo.subject"
-                :error="subjectError"
-                />
+              <Input 
+          label="Subject" 
+          v-model:subject="todo.subject"
+          :error="subjectError"
+        />
         </div>
         <div 
             v-if="editing"

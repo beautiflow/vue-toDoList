@@ -30,7 +30,7 @@ const onInput = (e) => {
 <template>
     <div class="form-group">
         
-        <label>{{ props.lable}}</label>
+        <label>{{ props.label }}</label>
         <input 
             :value="subject"
             @input="onInput"
