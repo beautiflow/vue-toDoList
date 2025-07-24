@@ -17,13 +17,13 @@ const onDelete = () => {
 
 <template>
   <Modal>
-          <template v-slot:title>
+          <template #title>
             Delete Todo
           </template>
-          <template v-slot:body>
+          <template #body>
             Are you sure you want to delete this todo?
           </template>
-          <template v-slot:footer>
+          <template #footer>
            <button 
                     type="button" 
                     class="btn btn-secondary" 

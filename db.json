@@ -44,12 +44,6 @@
       "subject": "new todo22222",
       "completed": true,
       "id": 26
-    },
-    {
-      "subject": "asdf",
-      "completed": false,
-      "body": "asdf",
-      "id": 27
     }
   ]
 }
