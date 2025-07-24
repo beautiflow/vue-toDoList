@@ -18,7 +18,6 @@ export const useToast = () => {
         }
         
     onMounted(() => {
-     console.log('unmounted');
      clearTimeout(timeout.value);
     });
 

@@ -18,10 +18,6 @@
     @keyup.enter="searchTodo"
     >
     <hr />
-    <TodoSimpleForm @add-todo="addTodo"/>
-    <div style="color: red">
-      {{error}}
-    </div>
     
     <div v-if="!todos.length">
       There is nothing to display.
@@ -69,7 +65,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue';
 import TodoList from '@/components/TodoList.vue';
-import TodoSimpleForm from '@/components/TodoSimpleForm.vue';
 import axios from 'axios';
 import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
@@ -108,22 +103,22 @@ import { useRouter } from 'vue-router';
     }
     getTodos();
 
-    const addTodo = async (todo) => {
-      // 데이터베이스 todo를 저장
-      error.value = '';
-      try{
-          await axios.post('http://localhost:3000/todos', {
-            subject: todo.subject,
-            completed: todo.completed,
-          });
+    // const addTodo = async (todo) => {
+    //   // 데이터베이스 todo를 저장
+    //   error.value = '';
+    //   try{
+    //       await axios.post('http://localhost:3000/todos', {
+    //         subject: todo.subject,
+    //         completed: todo.completed,
+    //       });
 
-          await getTodos(1);
-      }catch(err){
-          error.value = 'Something went wrong.';
-          triggerToast('Something went wrong', 'danger');
-      }
-      console.log("hello")
-    };
+    //       await getTodos(1);
+    //   }catch(err){
+    //       error.value = 'Something went wrong.';
+    //       triggerToast('Something went wrong', 'danger');
+    //   }
+    //   console.log("hello")
+    // };
    
     const deleteTodo = async (index) => {
       error.value = '';
