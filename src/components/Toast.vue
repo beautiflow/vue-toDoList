@@ -19,13 +19,9 @@ import { useToast } from '@/hooks/toast';
                 {{toast.message}}
             </div>
         </transition-group>
-   
- 
     </div>
 
 </template>
-
-
 
 <style scoped>
     .toast-box{
@@ -33,7 +29,6 @@ import { useToast } from '@/hooks/toast';
         top: 10px;
         right: 10px;
     }
-
     
     .slide-enter-active,
     .slide-leave-active{
@@ -50,7 +45,6 @@ import { useToast } from '@/hooks/toast';
     .slide-leave-from{
         opacity: 1;
         transform : translateY(0px);
-
     }
 
 </style>

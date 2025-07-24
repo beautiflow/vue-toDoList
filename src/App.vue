@@ -1,23 +1,12 @@
 <script setup>
 import Toast from '@/components/Toast.vue';
-
-
+import Navbar from '@/components/Navbar.vue';
 
 </script>
 
 <template>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <router-link class="navbar-brand" :to="{ name: 'Home'}">
-    Kossie Coder
-  </router-link>
-  
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item active">
-      <router-link class="nav-link" :to="{ name: 'Todos'}">Todos</router-link>
-    </li>
-  </ul>
+  <Navbar />
 
-</nav>
 <div class="container">
   <router-view/>
 </div>
@@ -28,8 +17,6 @@ import Toast from '@/components/Toast.vue';
 </template>
 
 <style scoped>
-
-
     .slide-enter-active,
     .slide-leave-active{
         transition: all 0.5s ease;
@@ -45,7 +32,6 @@ import Toast from '@/components/Toast.vue';
     .slide-leave-from{
         opacity: 1;
         transform : translateY(0px);
-
     }
 
 </style>
