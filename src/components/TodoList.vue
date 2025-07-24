@@ -36,9 +36,12 @@ import { ref } from 'vue';
       showModal.value = false;
     }
 
-    // const deleteTodo = (index) => {
-    //     emit('delete-todo', index);
-    // };
+    const deleteTodo = () => {
+        emit('delete-todo', todoDeleteId.value);
+
+        showModal.value = false;
+        todoDeleteId.value = null;
+    };
 
     const moveToPage = (todoId) => {
       console.log(todoId);
@@ -91,6 +94,7 @@ import { ref } from 'vue';
     <Modal 
       v-if="showModal"
       @close="closeModal"
+      @delete="deleteTodo"
       />
 </template>
 

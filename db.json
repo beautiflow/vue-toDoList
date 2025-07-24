@@ -41,19 +41,9 @@
       "id": 21
     },
     {
-      "subject": "15151",
-      "completed": false,
-      "id": 22
-    },
-    {
       "subject": "553434",
       "completed": true,
       "id": 23
-    },
-    {
-      "subject": "151543",
-      "completed": true,
-      "id": 25
     },
     {
       "subject": "new todo22222",
@@ -71,12 +61,6 @@
       "completed": false,
       "body": "2342",
       "id": 28
-    },
-    {
-      "subject": "asdfafe",
-      "completed": false,
-      "body": "qerasdfaadfaasdfasss",
-      "id": 29
     }
   ]
 }
