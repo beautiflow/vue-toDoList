@@ -1,13 +1,18 @@
 <script setup>
 import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
+import { useStore } from 'vuex';
 
-   const {
+  const store = useStore();
+  console.log(store.state.showToast);
+  const {
       toastMessage,
       toastAlertType,
       showToast,
       // triggerToast
     } = useToast();
+
+    console.log(showToast.value);
 
 
 </script>
