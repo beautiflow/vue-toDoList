@@ -1,6 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router';
-import Modal from '@/components/Modal.vue';
+import Modal from '@/components/DeleteModal.vue';
 import { ref } from 'vue';
  
     const { todos } = defineProps({
@@ -92,13 +92,13 @@ import { ref } from 'vue';
       </div>
     </div>
    
-      <teleport to="#modal">
-         <Modal 
-          v-if="showModal"
-          @close="closeModal"
-          @delete="deleteTodo"
-          />
-      </teleport>
+   <teleport to="#modal">
+      <Modal 
+        v-if="showModal"
+        @close="closeModal"
+        @delete="deleteTodo"
+      />
+    </teleport>
     
 </template>
 
