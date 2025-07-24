@@ -1,7 +1,7 @@
 <script setup>
 import axios from 'axios';
 import { useRoute, useRouter } from 'vue-router';
-import { computed, ref, onUpdated } from 'vue';
+import { computed, ref } from 'vue';
 import _ from 'lodash';
 import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
@@ -14,9 +14,6 @@ import  Input  from '@/components/Input.vue';
         completed: false,
         body: ''
     });
-    onUpdated(() => {
-        console.log(todo.value.subject)
-    })
     const subjectError = ref('');
     const originalTodo = ref(null);
     const loading = ref(false);
