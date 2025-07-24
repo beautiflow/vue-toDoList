@@ -1,14 +1,3 @@
-<template>
-    <div 
-        class="alert toast-box"
-        :class="`alert-${type}`"
-        role="alert"
-    >
-        {{message}}
-    </div>
-
-</template>
-
 <script setup>
     const {message} = defineProps({
         message: {
@@ -23,6 +12,19 @@
 
 
 </script>
+
+<template>
+    <div 
+        class="alert toast-box"
+        :class="`alert-${type}`"
+        role="alert"
+    >
+        {{message}}
+    </div>
+
+</template>
+
+
 
 <style>
     .toast-box{
