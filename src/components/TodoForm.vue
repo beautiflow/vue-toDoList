@@ -3,7 +3,6 @@ import axios from '@/axios';
 import { useRoute, useRouter } from 'vue-router';
 import { computed, ref } from 'vue';
 import _ from 'lodash';
-import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
 import  Input  from '@/components/Input.vue';
 import { useStore } from 'vuex';
@@ -22,9 +21,7 @@ import { useStore } from 'vuex';
     const loading = ref(false);
 
     const {
-      toastMessage,
-      toastAlertType,
-      showToast,
+  
       triggerToast
     } = useToast();
 
@@ -178,13 +175,6 @@ import { useStore } from 'vuex';
         Cancel
     </button>
   </form>
-  <transition name="fade">
-    <Toast 
-        v-if="showToast"
-        :message="toastMessage"
-        :type="toastAlertType"
-        />
-  </transition>
  
 </template>
 

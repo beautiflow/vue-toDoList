@@ -2,7 +2,6 @@
 import { ref, computed, watch } from 'vue';
 import TodoList from '@/components/TodoList.vue';
 import axios from '@/axios';
-import Toast from '@/components/Toast.vue';
 import { useToast } from '@/hooks/toast';
 import { useRouter } from 'vue-router';
 
@@ -19,9 +18,7 @@ import { useRouter } from 'vue-router';
     });
 
     const {
-      toastMessage,
-      toastAlertType,
-      showToast,
+   
       triggerToast
     } = useToast();
 
@@ -162,11 +159,6 @@ import { useRouter } from 'vue-router';
     </nav>
     
 </div>
-<Toast 
-    v-if="showToast"
-    :message="toastMessage"
-    :type="toastAlertType"
-/>
   
   
 </template>
